@@ -5,10 +5,20 @@
         static void Main(string[] args)
         {
             string path = "C://Users//Programmazione//Downloads/addresses.csv";
-            GetAddress(path);
-
+            PrintList(GetAddress(path));
         }
 
+        public static void PrintList(List<Address> list)
+        {
+            int counter = 0;
+            Console.WriteLine($"ID, NAME, SURNAME, STREET , CITY, PROVINCE, ZIP");
+            foreach (Address address in list)
+            {
+                counter++;
+                Console.WriteLine($"{counter}) {address.Name}, {address.Surname}, {address.Street}, {address.City}, {address.Province}, {address.Zip}");
+            }
+        }
+        //Return a list of addresses fromm a csv file
         public static List<Address> GetAddress(string path) 
         {
             List<Address> addresses = new List<Address>();
@@ -18,7 +28,7 @@
             while (!stream.EndOfStream)
             {
                 var line = stream.ReadLine();
-                Console.WriteLine(line);
+                //Console.WriteLine(line);
 
                 counter++;
                 if (counter <= 1)
