@@ -1,11 +1,17 @@
-﻿namespace csharp_lista_indirizzi
+﻿using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+
+namespace csharp_lista_indirizzi
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             string path = "C://Users//Programmazione//Downloads/addresses.csv";
-            PrintList(GetAddress(path));
+            List<Address> newAddresses = GetAddress(path);
+            PrintList(newAddresses);
+            var newList= JsonConvert.SerializeObject(newAddresses);
+            System.IO.File.WriteAllText(@"C://Users//Programmazione//Downloads/new_address_file.json", newList);
         }
 
         public static void PrintList(List<Address> list)
